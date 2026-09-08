@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Change Color</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #color_area {
+            height: 400px;
+            background-color: #444242;
+        }
+
+        .nama {
+            font-weight: bold;
+            animation: muncul 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0.5;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Area warna -->
+        <div class="row">
+            <div class="col" id="color_area"></div>
+        </div>
+
+        <!-- Button -->
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-danger" onclick="merah()">
+                    RED
+                </button>
+            </div>
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-primary" onclick="biru()">
+                    BLUE
+                </button>
+            </div>
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-success" onclick="hijau()">
+                    GREEN
+                </button>
+            </div>
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-warning" onclick="kuning()">
+                    YELLOW
+                </button>
+            </div>
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-dark" onclick="pelangi()">
+                    RAINBOW
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Pilih warna -->
+        <div class="row" style="margin-top: 20px;">
+            <div class="col">
+                <input type="color" id="pilihwarna" onchange="ubahwarna()">
+            </div>
+        </div>
+
+        <!-- Warna yang dipilih -->
+        <div class="row" id="daftarwarna" style="margin-top: 20px;">
+        </div>
+
+        <!-- Nama -->
+        <div class="alert alert-light text-center mt-5 nama" role="alert">
+            Indah Cahya N | 25/565798/SV/26994 | PG-WEB ACARA 3
+        </div>
+
+    </div>
+
+    <script>
+        function merah() {
+            document.getElementById("color_area").style.backgroundColor = "red";
+        }
+
+        function biru() {
+            document.getElementById("color_area").style.backgroundColor = "blue";
+        }
+
+        function hijau() {
+            document.getElementById("color_area").style.backgroundColor = "green";
+        }
+
+        function kuning() {
+            document.getElementById("color_area").style.backgroundColor = "yellow";
+        }
+
+        function pelangi() {
+            document.getElementById("color_area").style.background =
+                "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+        }
+
+        function ubahwarna() {
+            let warna = document.getElementById("pilihwarna").value;
+
+            document.getElementById("color_area").style.backgroundColor = warna;
+
+            let col = document.createElement("div");
+            col.className = "col d-grid";
+
+            let tombol = document.createElement("button");
+            tombol.type = "button";
+            tombol.className = "btn";
+            tombol.style.backgroundColor = warna;
+            tombol.innerHTML = warna;
+
+            tombol.onclick = function () {
+                document.getElementById("color_area").style.backgroundColor = warna;
+            };
+
+            col.appendChild(tombol);
+            document.getElementById("daftarwarna").appendChild(col);
+        }
+    </script>
+
+</body>
+
+</html>
