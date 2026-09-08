@@ -15,19 +15,16 @@
         }
 
         .nama {
-            font-weight: bold;
             animation: muncul 1.5s ease-in-out infinite alternate;
         }
 
         @keyframes muncul {
             from {
                 opacity: 0.5;
-                transform: translateY(5px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
     </style>
@@ -42,35 +39,35 @@
             <div class="col" id="color_area"></div>
         </div>
 
-        <!-- Button -->
+        <!-- Button warna -->
         <div class="row" style="margin-top: 20px;">
 
             <div class="col d-grid">
-                <button type="button" class="btn btn-danger" onclick="merah()">
+                <button type="button" class="btn btn-danger" onclick="ubahwarna('red')">
                     RED
                 </button>
             </div>
 
             <div class="col d-grid">
-                <button type="button" class="btn btn-primary" onclick="biru()">
+                <button type="button" class="btn btn-primary" onclick="ubahwarna('blue')">
                     BLUE
                 </button>
             </div>
 
             <div class="col d-grid">
-                <button type="button" class="btn btn-success" onclick="hijau()">
+                <button type="button" class="btn btn-success" onclick="ubahwarna('green')">
                     GREEN
                 </button>
             </div>
 
             <div class="col d-grid">
-                <button type="button" class="btn btn-warning" onclick="kuning()">
+                <button type="button" class="btn btn-warning" onclick="ubahwarna('yellow')">
                     YELLOW
                 </button>
             </div>
 
             <div class="col d-grid">
-                <button type="button" class="btn btn-dark" onclick="pelangi()">
+                <button type="button" class="btn btn-dark" onclick="ubahwarna('rainbow')">
                     RAINBOW
                 </button>
             </div>
@@ -79,45 +76,49 @@
 
         <!-- Pilih warna -->
         <div class="row" style="margin-top: 20px;">
+
             <div class="col">
-                <input type="color" id="pilihwarna" onchange="ubahwarna()">
+                <input type="color" id="pilihwarna">
             </div>
+
+            <div class="col d-grid">
+                <button type="button" class="btn btn-secondary" onclick="ubahwarnabebas()">
+                    UBAH WARNA
+                </button>
+            </div>
+
         </div>
 
-        <!-- Warna yang dipilih -->
+        <!-- Warna pilihan otomatis -->
         <div class="row" id="daftarwarna" style="margin-top: 20px;">
         </div>
 
-        <!-- Nama -->
+        <!-- Identitas -->
         <div class="alert alert-light text-center mt-5 nama" role="alert">
-            Indah Cahya N | 25/565798/SV/26994 | PG-WEB ACARA 3
+            Indah Cahya N | 25/565798/SV/26994
         </div>
 
     </div>
 
     <script>
-        function merah() {
-            document.getElementById("color_area").style.backgroundColor = "red";
+
+        function ubahwarna(warna) {
+
+            if (warna == "rainbow") {
+
+                document.getElementById("color_area").style.background =
+                    "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+
+            } else {
+
+                document.getElementById("color_area").style.backgroundColor = warna;
+
+            }
         }
 
-        function biru() {
-            document.getElementById("color_area").style.backgroundColor = "blue";
-        }
 
-        function hijau() {
-            document.getElementById("color_area").style.backgroundColor = "green";
-        }
+        function ubahwarnabebas() {
 
-        function kuning() {
-            document.getElementById("color_area").style.backgroundColor = "yellow";
-        }
-
-        function pelangi() {
-            document.getElementById("color_area").style.background =
-                "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
-        }
-
-        function ubahwarna() {
             let warna = document.getElementById("pilihwarna").value;
 
             document.getElementById("color_area").style.backgroundColor = warna;
@@ -132,12 +133,14 @@
             tombol.innerHTML = warna;
 
             tombol.onclick = function () {
-                document.getElementById("color_area").style.backgroundColor = warna;
+                ubahwarna(warna);
             };
 
             col.appendChild(tombol);
+
             document.getElementById("daftarwarna").appendChild(col);
         }
+
     </script>
 
 </body>
